@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #birdAnimation, #heartAnimation {
+            width: 150px;
+            height: 150px;
+        }
+
+        button {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #yesBtn {
+            transition: transform 0.5s, background-color 0.5s;
+            background-color: green;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            transition: background-color 0.5s;
+            background-color: red;
+            color: white;
+        }
+
+        #noBtn:hover {
+            background-color: darkred;
+        }
+    </style>
+    <title>Valentine's Day</title>
+</head>
+<body>
+    <div class="container">
+        <img id="birdAnimation" src="Bird.gif" alt="Bird Animation">
+        <img id="heartAnimation" src="Heart.gif" alt="Heart Animation" style="display: none;">
+        <p id="question">Will you be my valentine?</p>
+        <button id="yesBtn" onclick="showLove()">Yes</button>
+        <button id="noBtn" onclick="changeNo()">No</button>
+        <p id="loveMessage"></p>
+    </div>
+    <script>
+        let noButtonClicks = 0;
+
+        const noButtonMessages = [
+            "I love you!",
+            "Seriously! :(",
+            "Try again with love :)",
+            "Make the right decision, I love you!"
+        ];
+
+        function changeNo() {
+            document.getElementById("noBtn").innerHTML = noButtonMessages[noButtonClicks % noButtonMessages.length];
+            noButtonClicks++;
+            document.getElementById("yesBtn").style.transform = `scale(${1 + (noButtonClicks / 10)})`;
+        }
+
+        function showLove() {
+            document.getElementById("question").style.display = "none";
+            document.getElementById("yesBtn").style.display = "none";
+            document.getElementById("noBtn").style.display = "none";
+            document.getElementById("birdAnimation").style.display = "none";
+            
+            // Display the heart animation
+            document.getElementById("heartAnimation").style.display = "inline";
+            
+            document.getElementById("loveMessage").innerHTML = "I love you so much! Be ready for a wonderful date";
+        }
+    </script>
+</body>
+</html>
